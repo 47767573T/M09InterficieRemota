@@ -17,32 +17,38 @@ public class Cliente_Calculadora {
 
         gestionOperacion(input.nextLine());
 
-        System.out.println("BYE BYE");
+        System.out.println("\n\t\tBYE BYE");
     }
 
-
+    /**
+     * Define el tipo de operacion y la distribuye al metodo adecuado
+     * @param operacion la operacion a definir
+     * @throws RemoteException
+     * @throws NotBoundException
+     */
     public static void gestionOperacion(String operacion) throws RemoteException, NotBoundException {
         CalculadoraInterficie calculadora = null;
         Registry registry;
 
-        System.out.println("Conectando ...");
-        registry = LocateRegistry.getRegistry("localhost", 5555);
+        System.out.print("Conectando ...");
+        registry = LocateRegistry.getRegistry("localhost", 5554);
         System.out.println("... conseguido registro remoto");
-        calculadora = (CalculadoraInterficie) registry.lookup("generico");
+        calculadora = (CalculadoraInterficie)registry.lookup("generico");
 
         if (calculadora != null) {
-            System.out.println("Operacion:");
+            System.out.println("\nOperacion: ");
 
+            //SUMA
             if (operacion.contains("+")) System.out.println("\tResultado de suma: " + calculadora.sumar(operacion));
 
-            else if (operacion.contains("-"))
-                System.out.println("\tResultado de resta: " + calculadora.restar(operacion));
+            //RESTA
+            else if (operacion.contains("-"))  System.out.println("\tResultado de resta: " + calculadora.restar(operacion));
 
-            else if (operacion.contains("*"))
-                System.out.println("\tResultado de multiplicación: " + calculadora.multiplicar(operacion));
+            //MULTIPLICACION
+            else if (operacion.contains("*"))  System.out.println("\tResultado de multiplicación: " + calculadora.multiplicar(operacion));
 
-            else if (operacion.contains("/"))
-                System.out.println("\tResultado de división: " + calculadora.dividir(operacion));
+            //DIVISION
+            else if (operacion.contains("/"))  System.out.println("\tResultado de división: " + calculadora.dividir(operacion));
 
             else System.out.println("Operación no reconocida");
 
