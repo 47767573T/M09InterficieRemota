@@ -13,7 +13,7 @@ public class Cliente_Calculadora {
     public static void main(String[] args) throws RemoteException, NotBoundException {
 
         Scanner input = new Scanner(System.in);
-        System.out.println("Entra operación:");
+        System.out.println("Introduzca la operación:");
 
         gestionOperacion(input.nextLine());
 
